@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.levin.feishu.sdk</groupId>
+    <artifactId>server-sdk</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <packaging>jar</packaging>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.5.RELEASE</version>
+    </parent>
+
+    <properties>
+
+        <revision>1.0.0-SNAPSHOT</revision>
+
+        <levin.service-support.version>1.1.21-SNAPSHOT</levin.service-support.version>
+
+        <levin.service-support.groupId>com.github.Levin-Li</levin.service-support.groupId>
+
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <maven.compile.skip>false</maven.compile.skip>
+        <maven.javadoc.skip>true</maven.javadoc.skip>
+        <maven.source.skip>true</maven.source.skip>
+
+        <spring-cloud.version>Hoxton.SR6</spring-cloud.version>
+
+        <maven-source-plugin.attach>true</maven-source-plugin.attach>
+        <maven-jar-plugin.addMavenDescriptor>false</maven-jar-plugin.addMavenDescriptor>
+
+        <io.swagger.core.v3.version>2.1.2</io.swagger.core.v3.version>
+
+    </properties>
+
+
+    <repositories>
+
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+
+        <!--  在 gitpack.io 打包时会非常的慢 -->
+        <!--                <repository>
+                            &lt;!&ndash; 仓库首页 https://maven.aliyun.com/ &ndash;&gt;
+                            <id>aliyun-central仓和jcenter仓的聚合仓</id>
+                            <url>https://maven.aliyun.com/repository/public</url>
+                        </repository>
+        -->
+    </repositories>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+             <version>2.2.2.RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>${levin.service-support.groupId}</groupId>
+            <artifactId>service-support</artifactId>
+            <version>${levin.service-support.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+            <!--            <version>2.3.6.RELEASE</version>-->
+        </dependency>
+
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>${io.swagger.core.v3.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter</artifactId>-->
+        <!--            <scope>compile</scope>-->
+        <!--            <version>2.3.5.RELEASE</version>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-web</artifactId>-->
+        <!--            <scope>compile</scope>-->
+        <!--            <version>2.3.5.RELEASE</version>-->
+        <!--        </dependency>-->
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.20</version>
+            <scope>compile</scope>
+        </dependency>
+
+    </dependencies>
+
+
+    <build>
+
+
+        <plugins>
+
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <inherited>true</inherited>
+                <configuration>
+                    <!-- 编译时保留参数名称 -->
+                    <parameters>true</parameters>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <inherited>true</inherited>
+                <configuration>
+                    <archive>
+                        <addMavenDescriptor>${maven-jar-plugin.addMavenDescriptor}</addMavenDescriptor>
+                    </archive>
+                </configuration>
+            </plugin>
+
+
+            <!--           <plugin>
+                           <groupId>org.jetbrains.kotlin</groupId>
+                           <artifactId>kotlin-maven-plugin</artifactId>
+                           <inherited>true</inherited>
+
+                           <executions>
+
+                               <execution>
+                                   <id>compile</id>
+                                   <phase>compile</phase>
+                                   <goals>
+                                       <goal>compile</goal>
+                                   </goals>
+                               </execution>
+
+                               <execution>
+                                   <id>compile-compile</id>
+                                   <phase>compile-compile</phase>
+                                   <goals>
+                                       <goal>compile-compile</goal>
+                                   </goals>
+                               </execution>
+
+                           </executions>
+
+                           <configuration>
+                               <jvmTarget>${maven.compiler.target}</jvmTarget>
+                           </configuration>
+
+                       </plugin>
+
+                       <plugin>
+                           <groupId>org.codehaus.gmaven</groupId>
+                           <artifactId>gmaven-plugin</artifactId>
+                           <version>1.5</version>
+
+                           <inherited>true</inherited>
+
+                           <configuration>
+                               <providerSelection>${maven.compiler.target}</providerSelection>
+                               <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
+                               &lt;!&ndash; 用maven编译时需要加encoding：mvn -Dfile.encoding=UTF-8 compile  &ndash;&gt;
+                               <source/>
+                           </configuration>
+
+                           <executions>
+                               <execution>
+                                   <goals>
+                                       <goal>generateStubs</goal>
+                                       <goal>compile</goal>
+                                       <goal>generateTestStubs</goal>
+                                       <goal>compileCompile</goal>
+                                   </goals>
+                               </execution>
+                           </executions>
+
+                       </plugin>-->
+
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <inherited>true</inherited>
+
+                <configuration>
+                    <delimiters>
+                        <delimiter>${*}</delimiter>
+                        <delimiter>@{*}</delimiter>
+                    </delimiters>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <inherited>true</inherited>
+
+                <executions>
+                    <execution>
+
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+
+                        <configuration>
+                            <attach>true</attach>
+                            <skip>${maven.javadoc.skip}</skip>
+                        </configuration>
+
+                    </execution>
+                </executions>
+
+                <configuration>
+                    <docencoding>UTF-8</docencoding>
+                    <additionalJOption>-Xdoclint:none</additionalJOption>
+                    <skip>${maven.javadoc.skip}</skip>
+                </configuration>
+
+            </plugin>
+
+
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+                <inherited>true</inherited>
+
+                <configuration>
+
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+
+                        <configuration>
+                            <!--默认不上传到maven库-->
+                            <attach>true</attach>
+                            <skipSource>${maven.source.skip}</skipSource>
+                        </configuration>
+
+                    </execution>
+                </executions>
+
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+
+            <!--            <plugin>-->
+            <!--                <artifactId>maven-deploy-plugin</artifactId>-->
+            <!--                <inherited>true</inherited>-->
+
+            <!--                <configuration>-->
+            <!--                    <uniqueVersion>true</uniqueVersion>-->
+            <!--                </configuration> -->
+            <!--            </plugin>-->
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <inherited>true</inherited>
+                <executions>
+
+                    <execution>
+                        <id>flatten</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                        <configuration>
+
+                            <updatePomFile>true</updatePomFile>
+                            <flattenMode>resolveCiFriendliesOnly</flattenMode>
+
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>flatten.clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+            </plugin>
+
+
+        </plugins>
+
+    </build>
+
+
+</project>

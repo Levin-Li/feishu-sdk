@@ -1,0 +1,27 @@
+
+feishu:
+   appId: cli_a197711775fb900c
+   appSecret: PV9Bk6DiDiI3vHrk1b9uVgEV5JtJ3GGt
+   event:
+      encrypt_key: vmaly!@#$%^&*ek
+      verification_token: xrUL3PTruUXjupVmxQBJEcAkSZXqoesP
+
+
+
+feign:
+   client:
+      config:
+         default:
+            connectTimeout: 5000
+            readTimeout: 5000
+            loggerLevel: FULL
+   okhttp:
+      enabled: true
+
+
+logging:
+   level:
+      com:
+         levin:
+            feishu:
+               sdk: trace
