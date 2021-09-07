@@ -1,10 +1,16 @@
 package com.levin.feishu.sdk.base;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
+import lombok.experimental.Accessors;
+import lombok.experimental.FieldNameConstants;
 
 import java.io.Serializable;
 import java.util.List;
 
+@Data
+@Accessors(chain = true)
+@FieldNameConstants
 public class PageableData<T> implements Serializable {
 
     @Schema(description = "是否还有更多项")

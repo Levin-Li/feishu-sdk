@@ -3,12 +3,14 @@ package com.levin.feishu.sdk.base;
 import lombok.Data;
 import lombok.ToString;
 import lombok.experimental.Accessors;
+import lombok.experimental.FieldNameConstants;
 
 import java.io.Serializable;
 
 @Data
 @ToString
 @Accessors(chain = true)
+@FieldNameConstants
 public class CustomAttr implements Serializable {
 
     /**
@@ -27,6 +29,7 @@ public class CustomAttr implements Serializable {
     @Data
     @ToString
     @Accessors(chain = true)
+    @FieldNameConstants
     public static class Value implements Serializable {
 
         String text;//字段类型为 TEXT 时该参数定义字段值，字段类型为 HREF 时该参数定义网页标题
@@ -48,6 +51,7 @@ public class CustomAttr implements Serializable {
     @Data
     @ToString
     @Accessors(chain = true)
+    @FieldNameConstants
     public static class Type implements Serializable {
         String id;//用户的user_id
         int type;//用户类型 1：用户

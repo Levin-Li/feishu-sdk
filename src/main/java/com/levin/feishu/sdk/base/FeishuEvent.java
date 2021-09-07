@@ -1,21 +1,30 @@
 package com.levin.feishu.sdk.base;
 
 import lombok.Data;
+import lombok.ToString;
 import lombok.experimental.Accessors;
+import lombok.experimental.FieldNameConstants;
 
 import java.io.Serializable;
 
 @Data
 @Accessors(chain = true)
+@ToString
+@FieldNameConstants
 public class FeishuEvent<HEADER extends FeishuEvent.Header, T extends Serializable> implements Serializable {
 
-    String schema;// 2.0,
+    String schema = "2.0";// 2.0,
 
     HEADER header;
 
     Payload<T> event;
 
-    public static class Payload<T extends Serializable> implements Serializable {
+    @Data
+    @Accessors(chain = true)
+    @ToString
+    @FieldNameConstants
+    public static class Payload<T extends Serializable>
+            implements Serializable {
         T object;
 
         //变更事件
@@ -23,6 +32,10 @@ public class FeishuEvent<HEADER extends FeishuEvent.Header, T extends Serializab
     }
 
 
+    @Data
+    @Accessors(chain = true)
+    @ToString
+    @FieldNameConstants
     public static class Header implements Serializable {
         String event_id;      // 5e3702a84e847582be8db7fb73283c02,
         String event_type;      // vc.meeting.meeting_ended_v1,

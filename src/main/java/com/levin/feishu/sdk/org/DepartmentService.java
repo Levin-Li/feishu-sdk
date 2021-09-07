@@ -25,11 +25,9 @@ public interface DepartmentService {
     @PostMapping
     FeishuApiResp<DepartmentWrapper> create(@SpringQueryMap OrgBaseReq req, @RequestBody DepartmentInfo departmentInfo);
 
-
     @Operation(tags = {TAG}, summary = "获取部门信息")
     @GetMapping("/{department_id}")
     FeishuApiResp<DepartmentWrapper> retrieve(@PathVariable String department_id, @SpringQueryMap OrgBaseReq req);
-
 
     @Operation(tags = {TAG}, summary = "修改部门部分信息")
     @PatchMapping("/{department_id}")
@@ -43,20 +41,16 @@ public interface DepartmentService {
     @DeleteMapping("/{department_id}")
     FeishuApiResp delete(@PathVariable String department_id, @SpringQueryMap OrgBaseReq req);
 
-
     @Operation(tags = {TAG}, summary = "获取部门列表")
     @GetMapping
     FeishuApiResp<PageableData<DepartmentInfo>> list(@SpringQueryMap ListDepartmentReq req);
-
 
     @Operation(tags = {TAG}, summary = "获取多级父部门列表", description = "该接口用来递归获取部门父部门的信息，并按照由子到父的顺序返回有权限的父部门信息列表。")
     @GetMapping("/parent")
     FeishuApiResp<PageableData<DepartmentInfo>> getParents(@SpringQueryMap ListDepartmentReq req);
 
-
     @Operation(tags = {TAG}, summary = "搜索部门")
     @PostMapping("/search")
     FeishuApiResp<PageableData<DepartmentInfo>> search(@SpringQueryMap ListDepartmentReq req, @RequestBody String query);
-
 
 }

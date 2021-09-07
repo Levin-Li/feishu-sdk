@@ -6,6 +6,7 @@ import com.levin.feishu.sdk.base.CustomAttr;
 import lombok.Data;
 import lombok.ToString;
 import lombok.experimental.Accessors;
+import lombok.experimental.FieldNameConstants;
 
 import java.io.Serializable;
 import java.util.List;
@@ -21,6 +22,7 @@ import java.util.List;
 @Data
 @ToString
 @Accessors(chain = true)
+@FieldNameConstants
 public class UserInfo implements Serializable {
 
 

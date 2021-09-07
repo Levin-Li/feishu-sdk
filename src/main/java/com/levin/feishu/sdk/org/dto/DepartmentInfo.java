@@ -5,6 +5,7 @@ import com.levin.feishu.sdk.base.I18nName;
 import lombok.Data;
 import lombok.ToString;
 import lombok.experimental.Accessors;
+import lombok.experimental.FieldNameConstants;
 
 import java.io.Serializable;
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.List;
 @Data
 @ToString
 @Accessors(chain = true)
+@FieldNameConstants
 public class DepartmentInfo implements Serializable {
 
     //    tenant_key： 企业唯一标识。企业安装应用时开放平台通过事件推送给应用，或在用户登录授权时返回。

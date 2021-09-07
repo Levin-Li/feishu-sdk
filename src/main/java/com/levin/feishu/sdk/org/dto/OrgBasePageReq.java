@@ -7,10 +7,12 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.ToString;
 import lombok.experimental.Accessors;
+import lombok.experimental.FieldNameConstants;
 
 @Data
 @ToString
 @Accessors(chain = true)
+@FieldNameConstants
 public class OrgBasePageReq extends FeishuApiPageReq {
 
     @Schema(description = "可选值：open_id，union_id，user_id；默认值：open_id")
