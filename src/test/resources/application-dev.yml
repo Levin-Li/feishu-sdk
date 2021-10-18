@@ -17,7 +17,9 @@ feign:
             loggerLevel: FULL
    okhttp:
       enabled: true
-
+   ##开启Hystrix断路器
+#   hystrix:
+#      enabled: true
 
 logging:
    level:

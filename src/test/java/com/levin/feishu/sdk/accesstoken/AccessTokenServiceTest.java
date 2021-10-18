@@ -61,10 +61,8 @@ class AccessTokenServiceTest {
     @Test
     void getInternalAppAccessToken() {
 
-
         //设置 token
         AccessContext.tenant_access_token(tokenResp.getTenant_access_token());
-
 
         FeishuApiResp<PageableData<UserInfo>> apiResp = userService.list(new ListUserReq());
 

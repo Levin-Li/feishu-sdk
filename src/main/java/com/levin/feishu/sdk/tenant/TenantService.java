@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 /**
  *
  */
-@FeignClient(value = TenantService.TAG, configuration = {FeishuFeignConfig.class}, url = "${feishu.uri:https://open.feishu.cn}", path = "open-apis/tenant/")
+@FeignClient(value = TenantService.TAG, fallbackFactory = FeishuFeignConfig.FBFactory.class, configuration = {FeishuFeignConfig.class}, url = "${feishu.uri:https://open.feishu.cn}", path = "open-apis/tenant/")
 public interface TenantService {
 
     String TAG = "TenantService";

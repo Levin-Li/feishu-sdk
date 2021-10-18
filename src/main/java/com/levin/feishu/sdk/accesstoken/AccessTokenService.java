@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
  * tenant_access_token: 租户 授权凭证，使用该access token，应用将使用自己的账号执行对应的操作，比如获取一个通讯录用户的信息。
  * user_access_token: 用户 授权凭证，使用该access token，应用将代表用户执行对应的操作，比如通过API 创建一篇云文档或者一个日程。
  */
-@FeignClient(value = AccessTokenService.TAG, url = "${feishu.uri:https://open.feishu.cn}", path = "/open-apis/auth/v3/")
+@FeignClient(value = AccessTokenService.TAG , url = "${feishu.uri:https://open.feishu.cn}", path = "/open-apis/auth/v3/")
 public interface AccessTokenService {
 
     String TAG = "AccessToken";
